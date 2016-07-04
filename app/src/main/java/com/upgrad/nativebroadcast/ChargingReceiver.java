@@ -24,13 +24,17 @@ public class ChargingReceiver extends BroadcastReceiver {
 
         if (action.equals(Intent.ACTION_POWER_CONNECTED)) {
             Toast.makeText(context, R.string.charging, Toast.LENGTH_SHORT).show();
-            MainActivity.mChargeStatus.setText(R.string.charging);
-            MainActivity.mChargeStatusImageView.setImageResource(R.drawable.charging);
+            if (MainActivity.mChargeStatus != null)
+                MainActivity.mChargeStatus.setText(R.string.charging);
+            if (MainActivity.mChargeStatusImageView != null)
+                MainActivity.mChargeStatusImageView.setImageResource(R.drawable.charging);
             edit.putBoolean(MainActivity.PREFS_STATUS, true);
         } else if (action.equals(Intent.ACTION_POWER_DISCONNECTED)) {
             Toast.makeText(context, R.string.not_charging, Toast.LENGTH_SHORT).show();
-            MainActivity.mChargeStatus.setText(R.string.not_charging);
-            MainActivity.mChargeStatusImageView.setImageResource(R.drawable.not_charging);
+            if (MainActivity.mChargeStatus != null)
+                MainActivity.mChargeStatus.setText(R.string.not_charging);
+            if (MainActivity.mChargeStatusImageView != null)
+                MainActivity.mChargeStatusImageView.setImageResource(R.drawable.not_charging);
             edit.putBoolean(MainActivity.PREFS_STATUS, false);
         }
         edit.apply();
